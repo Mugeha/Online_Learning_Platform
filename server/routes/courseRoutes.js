@@ -34,4 +34,19 @@ router.post('/', protect, instructorOnly, async (req, res) => {
   }
 });
 
+// GET /api/courses
+router.get('/', async (req, res) => {
+  try {
+    const courses = await Course.find()
+      .populate('instructor', 'name email') // show instructor details
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(courses);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch courses' });
+  }
+});
+
+
 module.exports = router;
