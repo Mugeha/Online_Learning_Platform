@@ -1,0 +1,41 @@
+.courses-page {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.courses-page h2 {
+  margin-bottom: 1rem;
+}
+
+.add-btn {
+  padding: 0.5rem 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.courses-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.course-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 300px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.course-card button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
