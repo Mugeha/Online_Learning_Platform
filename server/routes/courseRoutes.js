@@ -48,5 +48,30 @@ router.get('/', async (req, res) => {
   }
 });
 
+// POST /api/courses/:id/enroll
+router.post('/:id/enroll', protect, async (req, res) => {
+  try {
+    if (req.user.role !== 'student') {
+      return res.status(403).json({ message: 'Only students can enroll in courses' });
+    }
+
+    const courseId = req.params.id;
+    const user = await require('../models/User').findById(req.user.userId);
+
+    if (user.enrolledCourses.includes(courseId)) {
+      return res.status(400).json({ message: 'Already enrolled in this course' });
+    }
+
+    user.enrolledCourses.push(courseId);
+    await user.save();
+
+    res.status(200).json({ message: 'Enrolled successfully ✅' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Enrollment failed' });
+  }
+});
+
+
 
 module.exports = router;
