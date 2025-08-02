@@ -4,6 +4,8 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRoutes = require('./routes/authRoutes');
+const protectedRoutes = require('./routes/testRoutes');
+
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(express.json()); // <<== This is important!
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api', protectedRoutes);
+
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected ✅'))
