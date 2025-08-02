@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/authRoutes');
 const protectedRoutes = require('./routes/testRoutes');
+const courseRoutes = require('./routes/courseRoutes');
 
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(express.json()); // <<== This is important!
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api', protectedRoutes);
+app.use('/api/courses', courseRoutes);
+
 
 
 mongoose.connect(process.env.MONGO_URI)
